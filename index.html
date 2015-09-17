@@ -11,7 +11,14 @@
 <script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
 <script>
 function enviar(){
-	alert("Revision de boton")}
+	var checkbox_value = "";
+    $(":checkbox").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+            checkbox_value += $(this).val() + "|";
+        }});
+	alert("Revision de boton"+checkbox_value);
+	}
 /*
 $("#enviar").click(function () {
     alert("Boton reconocido");})var checkbox_value = "";
@@ -37,12 +44,12 @@ $("#enviar").click(function () {
           url: "http://myServer" ,
           dataType: "text",
           data: {
-                'sec' : 'seccion',
-                'casilla' : $("#casilla").val(),
-        'votos' : mySelections
+                sec : $("#seccion").val(),
+                casilla : $("#casilla").val(),
+        		votos : checkbox_value,
                 },
-          success: function(request) {
-                result.innerHTML = request ;
+          success: function(data) {
+                alert(data);
       
     });})*/
 </script>
@@ -218,9 +225,10 @@ $("#enviar").click(function () {
           <input type="checkbox" name="row[]" id="checkbox_69" class="custom" value="70" />
 	      <label for="checkbox_69">70</label>
         </fieldset></div>
-        
+       
+      <div data-role="fieldcontain"> 
 	  <button id="enviar" onclick="enviar();">Enviar</button>
-             
+      </div>
     </div>
 	<div data-role="footer" data-theme="a">
 		<h4>Pie de página</h4>
